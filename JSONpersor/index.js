@@ -2,7 +2,7 @@ document.getElementById("parseButton").addEventListener("click", function () {
   const jsonInput = document.getElementById("jsonInput").value;
   const jsonOutput = document.getElementById("output");
 
-  //This try catch blocks will try to output the data as JSON but if there is an error it will print the error.
+  // Try-catch block to handle parsing errors
   try {
     const parsedData = parseJSON(jsonInput);
     jsonOutput.textContent = JSON.stringify(parsedData, null, 2);
@@ -93,7 +93,7 @@ document.getElementById("parseButton").addEventListener("click", function () {
       //If there is a empty array we need to use this handle that.
       if (input[index] === "]") {
         index++;
-        return obj;
+        return arr;
       }
 
       while (true) {
@@ -134,7 +134,7 @@ document.getElementById("parseButton").addEventListener("click", function () {
             }
 
             //This is converting the hexadecimal code point to a character and append it to the result string
-            std += String.fromCharCode(parseInt(hex, 16));
+            str += String.fromCharCode(parseInt(hex, 16));
             index += 4; //Skip next 4 character
           } else {
             //Common escape sequence to their corresponding charector
@@ -164,10 +164,10 @@ document.getElementById("parseButton").addEventListener("click", function () {
 
     //This function is responsible of parsing boolean in the input
     function parseBoolean() {
-      if (input.substr([index]) === "true") {
+      if (input.substr(index, 4) === "true") {
         index += 4; //Skip the next 4 char
         return true;
-      } else if (input.substr([index]) === "false") {
+      } else if (input.substr(index, 5) === "false") {
         index += 5; //Skip the next 5 char
         return false;
       }
@@ -176,7 +176,7 @@ document.getElementById("parseButton").addEventListener("click", function () {
 
     //This is going to parse Null value
     function parseNull() {
-      if (input.substr([index]) === "null") {
+      if (input.substr(index, 4) === "null") {
         index += 4;
         return null;
       }
@@ -233,9 +233,9 @@ document.getElementById("parseButton").addEventListener("click", function () {
 
     //This function checks if a char is a digit
     function isDigit(char) {
-      return char >= "0" && char <= "0";
+      return char >= "0" && char <= "9";
     }
-  }
 
-  return parseValue();
+    return parseValue();
+  }
 });
