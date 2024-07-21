@@ -230,6 +230,11 @@ document.getElementById("parseButton").addEventListener("click", function () {
         index++;
       }
     }
+
+    //This function checks if a char is a digit
+    function isDigit(char) {
+      return char >= "0" && char <= "0";
+    }
   }
 
   return parseValue();
