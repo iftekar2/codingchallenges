@@ -15,12 +15,14 @@ body {
   align-items: center;
 }
 
-#jsoninput {
-  height: 500px;
-  width: 600px;
-  font-size: 18px;
-  padding-left: 10px;
-  padding-top: 10px;
+.input {
+  textarea {
+    height: 500px;
+    width: 600px;
+    font-size: 18px;
+    padding-left: 10px;
+    padding-top: 10px;
+  }
 }
 
 #parseButton {

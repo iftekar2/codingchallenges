@@ -49,11 +49,11 @@ document.getElementById("parseButton").addEventListener("click", function () {
       index++; //The starting element is { so we are going to skip it
       skipWhitespace(); //We are going to skip any white space
 
-      //If we see } that means that the object has ended so we skip } and return the object.
-      // if(input[index] === '}'){
-      //     index++;
-      //     return obj;
-      // }
+      ////If there is a empty object we need to use this handle that.
+      if (input[index] === "}") {
+        index++;
+        return obj;
+      }
 
       //This is going to loop over every element in the input.
       while (true) {
@@ -78,11 +78,43 @@ document.getElementById("parseButton").addEventListener("click", function () {
         }
 
         if (input[index] !== ",") {
-          throw new SyntaxError('Expected "," or "}" after value  in object');
+          throw new SyntaxError('Expected "," or "}" after value in object');
         }
         index++; //Skip ,
       }
     }
+
+    //This function is responsible for parsing array elements in the input
+    function parseArray() {
+      const arr = [];
+      index++; //Skip starting [
+      skipWhitespace();
+
+      //If there is a empty array we need to use this handle that.
+      if (input[index] === "]") {
+        index++;
+        return obj;
+      }
+
+      while (true) {
+        skipWhitespace();
+        arr.push(parseValue()); //This is addig the parsed value to the array
+        skipWhitespace();
+
+        if (input[index] === "]") {
+          index++; //Skip ]
+          return arr;
+        }
+
+        if (input[index] !== ",") {
+          throw new SyntaxError('Expected "," or "]" after value in array');
+        }
+        index++;
+      }
+    }
+
+    //This function is responsible for parsing string in the input
+    function parseString() {}
   }
   return parseValue();
 });
