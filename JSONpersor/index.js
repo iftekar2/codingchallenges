@@ -11,7 +11,7 @@ document.getElementById("parseButton").addEventListener("click", function () {
   }
 
   //This function is going to parse the data into JSON
-  function parsedData(input) {
+  function parseJSON(input) {
     let index = 0;
 
     //This function calles other parsing functions based on the type of value being passed from the input
@@ -42,5 +42,47 @@ document.getElementById("parseButton").addEventListener("click", function () {
         return parseNumber();
       }
     }
+
+    //This function is going to parse an object that is passed from input
+    function parseObject() {
+      const obj = {};
+      index++; //The starting element is { so we are going to skip it
+      skipWhitespace(); //We are going to skip any white space
+
+      //If we see } that means that the object has ended so we skip } and return the object.
+      // if(input[index] === '}'){
+      //     index++;
+      //     return obj;
+      // }
+
+      //This is going to loop over every element in the input.
+      while (true) {
+        skipWhitespace();
+        const key = parseString();
+        skipWhitespace();
+
+        if (input[index] !== ":") {
+          throw new SyntaxError('Expected ":" after key in object');
+        }
+
+        index++; //Skipping : from the input
+        skipWhitespace();
+
+        const value = parseValue();
+        obj[key] = value;
+        skipWhitespace();
+
+        if (input[index] === "}") {
+          index++; //Skip }
+          return obj;
+        }
+
+        if (input[index] !== ",") {
+          throw new SyntaxError('Expected "," or "}" after value  in object');
+        }
+        index++; //Skip ,
+      }
+    }
   }
+  return parseValue();
 });
