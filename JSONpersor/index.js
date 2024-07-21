@@ -114,7 +114,56 @@ document.getElementById("parseButton").addEventListener("click", function () {
     }
 
     //This function is responsible for parsing string in the input
-    function parseString() {}
+    function parseString() {
+      //Parsed result will be stored here
+      let str = "";
+      index++; //Skip '"'
+
+      //Loop will go untill it sees '"'
+      while (input[index] !== '"') {
+        if (input[index] === "\\") {
+          index++;
+          //This is going to check and see if the sequence is a Unicode
+          if (input[index] === "u") {
+            //This is going to get 4 cherectors from the input
+            let hex = input.substr(index + 1, 4);
+
+            //This is going to make sure the extrected cherectos are valid Hexadecimal numbers
+            if (!/^[0-9a-fA-F]{4}$/.test(hex)) {
+              throw new SyntaxError("Invalid Unicode escape sequence");
+            }
+
+            //This is converting the hexadecimal code point to a character and append it to the result string
+            std += String.fromCharCode(parseInt(hex, 16));
+            index += 4; //Skip next 4 character
+          } else {
+            //Common escape sequence to their corresponding charector
+            const escapeChar = {
+              '"': '"',
+              "\\": "\\",
+              "/": "/",
+              b: "\b",
+              f: "\f",
+              n: "\n",
+              r: "\r",
+              t: "\t",
+            };
+
+            //This is going to append escape sequence to the result string, if the escape requence is not recognized it will append the charectors as is.
+            str += escapeChar[input[index]] || input[index];
+          }
+        } else {
+          //If current char is not a escape char append it to the str.
+          str += input[index];
+        }
+        index++;
+      }
+      index++;
+    }
+
+    index++; //Skip '"'
+    return str;
   }
+
   return parseValue();
 });
