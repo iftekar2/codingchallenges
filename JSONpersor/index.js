@@ -171,7 +171,16 @@ document.getElementById("parseButton").addEventListener("click", function () {
         index += 5; //Skip the next 5 char
         return false;
       }
-      throw new SyntaxError("Unexpected token: " + input[index]);
+      throw new SyntaxError("Unexpected token " + input[index]);
+    }
+
+    //This is going to parse Null value
+    function parseNull() {
+      if (input.substr([index]) === "null") {
+        index += 4;
+        return null;
+      }
+      throw new SyntaxError("Unexpected token " + input[index]);
     }
   }
 
