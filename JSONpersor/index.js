@@ -182,6 +182,42 @@ document.getElementById("parseButton").addEventListener("click", function () {
       }
       throw new SyntaxError("Unexpected token " + input[index]);
     }
+
+    //This is going to parse Numbers
+    function parseNumber() {
+      const start = index;
+      if (input[index] === "-") {
+        index++; //skip -
+      }
+
+      while (isDigit(input[index])) {
+        index++;
+      }
+
+      if (input[index] === ".") {
+        index++;
+        while (isDigit(input[index])) {
+          index++;
+        }
+      }
+
+      if (input[index] === "e" || input[index] === "E") {
+        index++;
+        if (input[index] === "-" || input[index] === "+") {
+          index++;
+        }
+        while (isDigit(input[index])) {
+          index++;
+        }
+      }
+
+      //This is extrecting numaric substring from the input
+      const numStr = input.substring(start, index);
+      if (numStr.length === 0) {
+        throw new SyntaxError("Unexpected token " + input[index]);
+      }
+      return parseFloat(numStr);
+    }
   }
 
   return parseValue();
