@@ -158,11 +158,21 @@ document.getElementById("parseButton").addEventListener("click", function () {
         }
         index++;
       }
-      index++;
+      index++; //Skip '"'
+      return str;
     }
 
-    index++; //Skip '"'
-    return str;
+    //This function is responsible of parsing boolean in the input
+    function parseBoolean() {
+      if (input.substr([index]) === "true") {
+        index += 4; //Skip the next 4 char
+        return true;
+      } else if (input.substr([index]) === "false") {
+        index += 5; //Skip the next 5 char
+        return false;
+      }
+      throw new SyntaxError("Unexpected token: " + input[index]);
+    }
   }
 
   return parseValue();
