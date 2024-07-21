@@ -13,6 +13,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 10px;
 }
 
 .input {
@@ -35,5 +36,12 @@ body {
 }
 
 #output {
-  color: white;
+  color: black;
+  background-color: white;
+  height: 500px;
+  width: 600px;
+  align-items: top;
+  font-size: 16px;
+  padding-left: 10px;
+  padding-top: 10px;
 }
