@@ -218,6 +218,18 @@ document.getElementById("parseButton").addEventListener("click", function () {
       }
       return parseFloat(numStr);
     }
+
+    //This function is going to skip any white space it sees
+    function skipWhitespace() {
+      while (
+        input[index] === " " ||
+        input[index] === "\n" ||
+        input[index] === "\r" ||
+        input[index] === "\t"
+      ) {
+        index++;
+      }
+    }
   }
 
   return parseValue();
