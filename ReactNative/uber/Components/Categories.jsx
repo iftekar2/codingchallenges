@@ -30,7 +30,7 @@ export default function Categoryes() {
         marginTop: 15,
         backgroundColor: "#eee",
         borderRadius: 10,
-        height: 100,
+        height: 90,
         paddingRight: 20,
       }}
     >
@@ -47,9 +47,9 @@ export default function Categoryes() {
           >
             <Image
               source={{ uri: item.image }}
-              style={{ width: 60, height: 60 }}
+              style={{ width: 60, height: 50 }}
             />
-            <Text style={{ fontSize: 20, fontWeight: 600, marginTop: 3 }}>
+            <Text style={{ fontSize: 18, fontWeight: 600, marginTop: 3 }}>
               {item.text}
             </Text>
           </View>
