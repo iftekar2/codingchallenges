@@ -5,7 +5,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 export default function SearchBar() {
   return (
-    <View style={{ marginTop: 15, flexDirection: "row" }}>
+    <View style={{ marginTop: 15, flexDirection: "row", marginBottom: 10 }}>
       <GooglePlacesAutocomplete
         placeholder="Search"
         styles={{

@@ -27,7 +27,7 @@ export default function Categoryes() {
       style={{
         display: "flex",
         alignItems: "center",
-        marginTop: 15,
+        marginTop: 5,
         backgroundColor: "#eee",
         borderRadius: 10,
         height: 90,
