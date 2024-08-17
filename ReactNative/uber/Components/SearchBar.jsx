@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import React from "react";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -7,7 +7,7 @@ export default function SearchBar() {
   return (
     <View style={{ marginTop: 15, flexDirection: "row", marginBottom: 10 }}>
       <GooglePlacesAutocomplete
-        query={{ key: "AIzaSyAuxk_t-1gDYF5JI25ms3YARVkz0IkiIS4" }}
+        query={{ key: process.env.REACT_APP_GOOGLE_KEY }}
         placeholder="Search"
         styles={{
           textInput: {
