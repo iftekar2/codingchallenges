@@ -6,7 +6,7 @@ export default function RestaurantItems() {
   const [localResturents, setLocalResturents] = useState([]);
   const getRestaurantFromYelp = async () => {
     const yelpURL =
-      "https://api.yelp.com/v3/businesses/search?term=restaurans&location=SanDiego";
+      "https://api.yelp.com/v3/businesses/search?term=restaurans&location=NewYork";
 
     const apiOption = {
       headers: {
